@@ -1,0 +1,380 @@
+*********************************************************************
+**  Delete script for DBANK01 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK01.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK01.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK01_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK01_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK01_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK01_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK01_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK01_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK01.11.BCAST)
+
+DELETE SUB(SNM.DBANK01.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK01.11)
+
+DELETE CHL(DBANK01.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK02 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK02.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK02.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK02_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK02_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK02_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK02_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK02_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK02_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK02.11.BCAST)
+
+DELETE SUB(SNM.DBANK02.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK02.11)
+
+DELETE CHL(DBANK02.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK03 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK03.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK03.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK03_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK03_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK03_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK03_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK03_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK03_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK03.11.BCAST)
+
+DELETE SUB(SNM.DBANK03.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK03.11)
+
+DELETE CHL(DBANK03.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK04 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK04.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK04.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK04_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK04_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK04_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK04_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK04_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK04_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK04.11.BCAST)
+
+DELETE SUB(SNM.DBANK04.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK04.11)
+
+DELETE CHL(DBANK04.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK05 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK05.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK05.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK05_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK05_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK05_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK05_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK05_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK05_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK05.11.BCAST)
+
+DELETE SUB(SNM.DBANK05.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK05.11)
+
+DELETE CHL(DBANK05.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK06 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK06.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK06.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK06_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK06_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK06_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK06_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK06_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK06_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK06.11.BCAST)
+
+DELETE SUB(SNM.DBANK06.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK06.11)
+
+DELETE CHL(DBANK06.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK07 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK07.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK07.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK07_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK07_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK07_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK07_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK07_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK07_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK07.11.BCAST)
+
+DELETE SUB(SNM.DBANK07.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK07.11)
+
+DELETE CHL(DBANK07.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK08 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK08.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK08.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK08_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK08_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK08_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK08_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK08_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK08_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK08.11.BCAST)
+
+DELETE SUB(SNM.DBANK08.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK08.11)
+
+DELETE CHL(DBANK08.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK09 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK09.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK09.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK09_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK09_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK09_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK09_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK09_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK09_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK09.11.BCAST)
+
+DELETE SUB(SNM.DBANK09.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK09.11)
+
+DELETE CHL(DBANK09.11.QM1)
+
+
+*********************************************************************
+**  Delete script for DBANK10 Site 1 Connection 1 on RTP MQ (QM1)
+**  Environment: DEV, QC, BT, PROD  ---  Updated: 12/04/2017
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+
+* Stop channels before removing them, to ensure object isn't in use.
+STOP CHL(QM1.DBANK10.11) +
+   MODE(FORCE)
+
+STOP CHL(DBANK10.11.QM1) +
+   MODE(FORCE)
+
+* Delete Xmit, remote, and local queues.
+DELETE QL(DBANK10_MQ1.QM1)  AUTHREC(YES) PURGE
+
+DELETE QR('DBANK10_MQ1.RESPONSE.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QR('DBANK10_MQ1.REQUEST.FROM.RTP_MQ1') AUTHREC(YES)
+
+DELETE QL('DBANK10_MQ1.REQUEST.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QL('DBANK10_MQ1.RESPONSE.TO.RTP_MQ1') AUTHREC(YES) PURGE
+
+DELETE QR('DBANK10_MQ1.SNM.FROM.RTP_MQ1') AUTHREC(YES)
+
+* Delete broadcast and individual participant's subscriptions
+DELETE SUB(SNM.DBANK10.11.BCAST)
+
+DELETE SUB(SNM.DBANK10.11)
+
+* Delete Sender and Receiver channels.
+DELETE CHL(QM1.DBANK10.11)
+
+DELETE CHL(DBANK10.11.QM1)
+
+

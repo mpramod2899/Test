@@ -1,0 +1,150 @@
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK01 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK01.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK01 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK02 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK02.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK02 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK03 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK03.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK03 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK04 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK04.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK04 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK05 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK05.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK05 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK06 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK06.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK06 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK07 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK07.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK07 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK08 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK08.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK08 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK09 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK09.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK09 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
+*********************************************************************
+**  Create Temp CHLAUTH for DBANK10 Site 1 Connection 1 w/ IP Address on RTP MQ (QM1)
+**  Environment: DEV, SBT, QC, BT, PROD  ---  Updated: 04/08/2020
+**  Comment: 10 Dbank build for Dev.
+**  Version: v1
+
+* ChlAuth w/o Certificate.
+SET CHLAUTH('DBANK10.11.QM1') +
+   TYPE(ADDRESSMAP) +
+   ADDRESS('127.0.0.2') +
+   USERSRC(CHANNEL) +
+   DESCR('TEMP non-cert access for DBANK10 (QM1) [v1]') +
+   ACTION(ADD)
+
+   
