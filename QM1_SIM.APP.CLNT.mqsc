@@ -1,0 +1,43 @@
+DEF CHL(SIM.APP.CLNT) +
+   CHLTYPE(SVRCONN) +
+   DESCR('mqm simulator application channel') +
+   MAXINST(800) +
+   MAXINSTC(800) +
+   MCAUSER('mqm') +
+   REPLACE
+
+SET AUTHREC +
+   PROFILE('self') +
+   OBJTYPE(QMGR) +
+   GROUP('mqm') +
+   AUTHADD(CONNECT,DSP,INQ)
+
+SET AUTHREC +
+   PROFILE('**') +
+   OBJTYPE(QUEUE) +
+   GROUP('mqm') +
+   AUTHADD(INQ,PUT,GET,DSP)
+
+SET AUTHREC +
+   PROFILE('**') +
+   OBJTYPE(CHANNEL) +
+   GROUP('mqm') +
+   AUTHADD(DSP,CTRL,CTRLX)
+
+SET AUTHREC +
+   PROFILE('SYSTEM.**') +
+   OBJTYPE(QUEUE) +
+   GROUP('mqm') +
+   AUTHADD(NONE)
+
+SET AUTHREC +
+   PROFILE('SYSTEM.**') +
+   OBJTYPE(CHANNEL) +
+   GROUP('mqm') +
+   AUTHADD(NONE)
+
+SET AUTHREC +
+   PROFILE('QM1.DLQ') +
+   OBJTYPE(QUEUE) +
+   GROUP('mqm') +
+   AUTHADD(NONE)
