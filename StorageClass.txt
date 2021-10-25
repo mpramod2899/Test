@@ -1,0 +1,73 @@
+bunty@bunty-VirtualBox:~$ kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                             STORAGECLASS   REASON   AGE
+pvc-1697b776-d3fa-49fb-9604-1327099fdc4f   10Gi       RWO            Delete           Bound    confluent/txnlog-zookeeper-2      gp2                     4d23h
+pvc-21156d2c-6810-4262-9ab3-32a805cf29b5   10Gi       RWO            Delete           Bound    confluent/txnlog-zookeeper-1      gp2                     4d23h
+pvc-249c8e78-0f2d-4d6e-9c3c-ca8c3ca4f20b   10Gi       RWO            Delete           Bound    confluent/data-zookeeper-1        gp2                     4d23h
+pvc-24b98657-e38d-4b14-905b-d1d1b9648709   100Gi      RWO            Retain           Bound    confluent/data-ksqldb-0           custom-gp2              4d18h
+pvc-2599e223-c937-4adc-9a5d-1c36b8f5dd6b   100Gi      RWO            Retain           Bound    confluent/data0-kafka-0           custom-gp2              4d21h
+pvc-3ac235dc-e1e4-4365-b101-1c1135a16b4b   100Gi      RWO            Delete           Bound    confluent/data0-controlcenter-0   gp2                     4d23h
+pvc-46485337-8405-4326-b88c-c283c1d4a3ad   10Gi       RWO            Delete           Bound    confluent/txnlog-zookeeper-0      gp2                     4d23h
+pvc-6596f75f-1a61-4fbf-959f-480722b0afbe   10Gi       RWO            Delete           Bound    confluent/data-zookeeper-2        gp2                     4d23h
+pvc-a941c631-3682-45df-bf85-c8a74a7d5d67   100Gi      RWO            Retain           Bound    confluent/data0-kafka-1           custom-gp2              4d21h
+pvc-b2f8aeca-29ba-49bb-93f6-aaf1a507be10   100Gi      RWO            Retain           Bound    confluent/data0-kafka-2           custom-gp2              4d21h
+pvc-c5d8a258-63c3-437e-9bb0-d3a3bd417201   10Gi       RWO            Delete           Bound    confluent/data-zookeeper-0        gp2                     4d23h
+pvc-d20ce3aa-014b-4e44-ac66-4c52a1739d6b   100Gi      RWO            Retain           Bound    confluent/data-ksqldb-1           custom-gp2              4d18h
+pvc-e262b1e0-b68c-4fab-be4f-6f879554155e   1Gi        RWO            Delete           Bound    confluent/ldap-config-ldap-0      gp2                     4d23h
+pvc-f260fb2f-d3b5-4747-bc02-54e76b7a2dd3   1Gi        RWO            Delete           Bound    confluent/ldap-data-ldap-0        gp2                     4d23h
+bunty@bunty-VirtualBox:~$ 
+
+
+Cbunty@bunty-VirtualBox:~$ kubectl get events
+LAST SEEN   TYPE      REASON                 OBJECT                          MESSAGE
+17m         Normal    SuccessfulUpdate       controlcenter/controlcenter     resource type *v1.Secret successfully updated
+41s         Warning   FailedToUpdate         controlcenter/controlcenter     resource type *v1.PersistentVolumeClaim failed to patch with error PersistentVolumeClaim "data0-controlcenter-0" is invalid: spec: Forbidden: spec is immutable after creation except resources.requests for bound claims...
+53s         Normal    DeletingLoadBalancer   service/ksqldb-client-service   Deleting load balancer
+27m         Normal    SuccessfulUpdate       ksqldb/ksqldb                   resource type *v1.Secret successfully updated
+47s         Warning   FailedToUpdate         zookeeper/zookeeper             resource type *v1.PersistentVolumeClaim failed to patch with error PersistentVolumeClaim "data-zookeeper-0" is invalid: spec: Forbidden: spec is immutable after creation except resources.requests for bound claims...
+bunty@bunty-VirtualBox:~$ 
+
+bunty@bunty-VirtualBox:~$ kubectl get pvc
+NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+data-ksqldb-0           Bound    pvc-24b98657-e38d-4b14-905b-d1d1b9648709   100Gi      RWO            custom-gp2     4d18h
+data-ksqldb-1           Bound    pvc-d20ce3aa-014b-4e44-ac66-4c52a1739d6b   100Gi      RWO            custom-gp2     4d18h
+data-zookeeper-0        Bound    pvc-c5d8a258-63c3-437e-9bb0-d3a3bd417201   10Gi       RWO            gp2            4d23h
+data-zookeeper-1        Bound    pvc-249c8e78-0f2d-4d6e-9c3c-ca8c3ca4f20b   10Gi       RWO            gp2            4d23h
+data-zookeeper-2        Bound    pvc-6596f75f-1a61-4fbf-959f-480722b0afbe   10Gi       RWO            gp2            4d23h
+data0-controlcenter-0   Bound    pvc-3ac235dc-e1e4-4365-b101-1c1135a16b4b   100Gi      RWO            gp2            4d23h
+data0-kafka-0           Bound    pvc-2599e223-c937-4adc-9a5d-1c36b8f5dd6b   100Gi      RWO            custom-gp2     4d21h
+data0-kafka-1           Bound    pvc-a941c631-3682-45df-bf85-c8a74a7d5d67   100Gi      RWO            custom-gp2     4d21h
+data0-kafka-2           Bound    pvc-b2f8aeca-29ba-49bb-93f6-aaf1a507be10   100Gi      RWO            custom-gp2     4d21h
+ldap-config-ldap-0      Bound    pvc-e262b1e0-b68c-4fab-be4f-6f879554155e   1Gi        RWO            gp2            4d23h
+ldap-data-ldap-0        Bound    pvc-f260fb2f-d3b5-4747-bc02-54e76b7a2dd3   1Gi        RWO            gp2            4d23h
+txnlog-zookeeper-0      Bound    pvc-46485337-8405-4326-b88c-c283c1d4a3ad   10Gi       RWO            gp2            4d23h
+txnlog-zookeeper-1      Bound    pvc-21156d2c-6810-4262-9ab3-32a805cf29b5   10Gi       RWO            gp2            4d23h
+txnlog-zookeeper-2      Bound    pvc-1697b776-d3fa-49fb-9604-1327099fdc4f   10Gi       RWO            gp2            4d23h
+bunty@bunty-VirtualBox:~$
+
+bunty@bunty-VirtualBox:~$ kubectl get sc
+NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+custom-gp2      kubernetes.io/aws-ebs   Retain          WaitForFirstConsumer   true                   5d
+gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  5d
+bunty@bunty-VirtualBox:~$ 
+
+
+unty@bunty-VirtualBox:~$ kubectl get pods
+NAME                                  READY   STATUS    RESTARTS   AGE
+confluent-operator-79955db9c9-kn9r4   1/1     Running   0          5d
+controlcenter-0                       1/1     Running   22         5d
+kafka-0                               1/1     Running   0          4d21h
+kafka-1                               1/1     Running   0          4d21h
+kafka-2                               1/1     Running   0          4d21h
+ksqldb-0                              1/1     Running   0          4d18h
+ksqldb-1                              1/1     Running   0          4d18h
+ksqldb-client-66686956cc-55xvt        1/1     Running   6          4d18h
+ksqldb-client-66686956cc-57zml        1/1     Running   6          4d18h
+ldap-0                                1/1     Running   1          5d
+schemaregistry-0                      1/1     Running   3          5d
+schemaregistry-1                      1/1     Running   2          5d
+zookeeper-0                           1/1     Running   0          5d
+zookeeper-1                           1/1     Running   0          5d
+zookeeper-2                           1/1     Running   0          5d
+bunty@bunty-VirtualBox:~$ 
+
+
