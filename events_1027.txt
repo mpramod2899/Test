@@ -1,0 +1,19 @@
+LAST SEEN   TYPE      REASON                   OBJECT                               MESSAGE
+103s        Normal    DeletingLoadBalancer     service/controlcenter-bootstrap-lb   Deleting load balancer
+52m         Warning   Warning                  kafkarestclass/default               kafka rest API request failed: Unauthorized (0)
+102s        Normal    DeletingLoadBalancer     service/kafka-0-lb                   Deleting load balancer
+103s        Normal    DeletingLoadBalancer     service/kafka-1-lb                   Deleting load balancer
+104s        Normal    DeletingLoadBalancer     service/kafka-2-lb                   Deleting load balancer
+103s        Normal    DeletingLoadBalancer     service/kafka-bootstrap-lb           Deleting load balancer
+104s        Normal    DeletingLoadBalancer     service/kafka-mds-bootstrap-lb       Deleting load balancer
+2m13s       Normal    DeletingLoadBalancer     service/ksqldb-bootstrap-lb          Deleting load balancer
+3m12s       Normal    DeletingLoadBalancer     service/ksqldb-client-service        Deleting load balancer
+53m         Normal    Killing                  pod/ldap-0                           Stopping container ldap
+52m         Normal    Scheduled                pod/ldap-0                           Successfully assigned confluent/ldap-0 to ip-10-208-76-84.ec2.internal
+52m         Normal    SuccessfulAttachVolume   pod/ldap-0                           AttachVolume.Attach succeeded for volume "pvc-e262b1e0-b68c-4fab-be4f-6f879554155e"
+52m         Normal    SuccessfulAttachVolume   pod/ldap-0                           AttachVolume.Attach succeeded for volume "pvc-f260fb2f-d3b5-4747-bc02-54e76b7a2dd3"
+52m         Normal    Pulled                   pod/ldap-0                           Container image "osixia/openldap:1.5.0" already present on machine
+52m         Normal    Created                  pod/ldap-0                           Created container ldap
+52m         Normal    Started                  pod/ldap-0                           Started container ldap
+52m         Warning   FailedCreate             statefulset/ldap                     create Pod ldap-0 in StatefulSet ldap failed error: The POST operation against Pod could not be completed at this time, please try again.
+52m         Normal    SuccessfulCreate         statefulset/ldap                     create Pod ldap-0 in StatefulSet ldap successful
