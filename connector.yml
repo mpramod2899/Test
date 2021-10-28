@@ -15,14 +15,16 @@ spec:
     s3.bucket.name: kafka-sink-connector-test
     s3.region: us-east-1
     storage.class: io.confluent.connect.s3.storage.S3Storage
-    principal.service.name: c3
-    principal.service.password: 7bFzKvpl2MGwAXZU9vPX#
     errors.tolerance: all
     errors.deadletterqueue.topic.name: dlq-test-end-to-end
     errors.deadletterqueue.context.headers.enable: true
-	errors.deadletterqueue.topic.replication.factor: 3
+    errors.deadletterqueue.topic.replication.factor: 3
   restartPolicy:
     type: OnFailure
     maxRetry: 3
-
+  mountedSecrets:
+    - secretRef: c3-mds-client
+  config:
+    principal.service.name: "${file:/mnt/secrets/c3-mds-client/bearer.txt:username}"
+    principal.service.password: "${file:/mnt/secrets/c3-mds-client/bearer.txt:password}"
   
