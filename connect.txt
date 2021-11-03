@@ -1,0 +1,5 @@
+vault.hashicorp.com/agent-inject-secret-controlcenter-bearer: secret/controlcenter/bearer.txt
+vault.hashicorp.com/agent-inject-template-controlcenter-bearer: |
+  {{- with secret "secret/controlcenter/bearer.txt" -}}
+  {{ .Data.data.bearer | base64Decode }}
+  {{- end }}
