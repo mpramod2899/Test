@@ -1,0 +1,15 @@
+EKS :
+subnet-0ba68faa7af387b89
+subnet-078e432c11e293d63
+subnet-04310c521697aa990
+
+
+Control-center - 
+subnet-078de01e595140a8e
+subnet-07e45b0fbaead7f4c
+
+Kafka
+subnet-0a79c38677ef32495
+subnet-0824f786f80789719
+subnet-0bd7add273956fadc
+
