@@ -1,0 +1,190 @@
+---
+apiVersion: platform.confluent.io/v1beta1
+kind: Kafka
+metadata:
+  name: kafka
+  namespace: confluent
+spec:
+  replicas: 3
+  image:
+    application: confluentinc/cp-server:7.0.1
+    init: confluentinc/confluent-init-container:2.2.1
+  podTemplate:
+    podSecurityContext:
+      fsGroup: 1000
+      runAsUser: 1000
+      runAsNonRoot: true
+    serviceAccountName: confluent-sa
+    annotations:
+      vault.hashicorp.com/agent-inject: "true"
+      vault.hashicorp.com/agent-inject-status: update
+      vault.hashicorp.com/preserve-secret-case: "true"
+      vault.hashicorp.com/agent-inject-secret-kafka-sasl-plain: secret/kafka-server/plain-jaas.conf
+      vault.hashicorp.com/secret-volume-path-kafka-sasl-plain: /vault/secrets/jaas
+      vault.hashicorp.com/agent-inject-file-kafka-sasl-plain: plain-jaas.conf
+      vault.hashicorp.com/agent-inject-template-kafka-sasl-plain: |
+        {{- with secret "secret/kafka-server/plain-jaas.conf" -}}
+        {{ .Data.data.plainjaas | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-kafka-apikeys: secret/kafka-server/apikeys.json
+      vault.hashicorp.com/secret-volume-path-kafka-apikeys: /vault/secrets/jaas
+      vault.hashicorp.com/agent-inject-file-kafka-apikeys: apikeys.json
+      vault.hashicorp.com/agent-inject-template-kafka-apikeys: |
+        {{- with secret "secret/kafka-server/apikeys.json" -}}
+        {{ .Data.data.apikeys | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-zk-digest: secret/kafka-server/digest-jaas.conf
+      vault.hashicorp.com/secret-volume-path-zk-digest: /vault/secrets/jaas
+      vault.hashicorp.com/agent-inject-file-zk-digest: digest-jaas.conf
+      vault.hashicorp.com/agent-inject-template-zk-digest: |
+        {{- with secret "secret/kafka-server/digest-jaas.conf" -}}
+        {{ .Data.data.digestjaas | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-kafka-client-sasl-plain: secret/kafka-client/plain-jaas.conf
+      vault.hashicorp.com/secret-volume-path-kafka-client-sasl-plain: /vault/secrets/client
+      vault.hashicorp.com/agent-inject-file-kafka-client-sasl-plain: plain-jaas.conf
+      vault.hashicorp.com/agent-inject-template-kafka-client-sasl-plain: |
+        {{- with secret "secret/kafka-client/plain-jaas.conf" -}}
+        {{ .Data.data.plainjaas | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-license: secret/license.txt
+      vault.hashicorp.com/agent-inject-file-license: license.txt
+      vault.hashicorp.com/agent-inject-template-license: |
+        {{- with secret "secret/license.txt" -}}
+        {{ .Data.data.license | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-mds-publickey: secret/mdsPublicKey.pem
+      vault.hashicorp.com/agent-inject-file-mds-publickey: mdsPublicKey.pem
+      vault.hashicorp.com/agent-inject-template-mds-publickey: |
+        {{- with secret "secret/mdsPublicKey.pem" -}}
+        {{ .Data.data.mdspublickey | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-mds-tokenkeypair: secret/mdsTokenKeyPair.pem
+      vault.hashicorp.com/agent-inject-file-mds-tokenkeypair: mdsTokenKeyPair.pem
+      vault.hashicorp.com/agent-inject-template-mds-tokenkeypair: |
+        {{- with secret "secret/mdsTokenKeyPair.pem" -}}
+        {{ .Data.data.mdstokenkeypair | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-ldap-simple: secret/ldap.txt
+      vault.hashicorp.com/agent-inject-file-ldap-simple: ldap.txt
+      vault.hashicorp.com/agent-inject-template-ldap-simple: |
+        {{- with secret "secret/ldap.txt" -}}
+        {{ .Data.data.ldapsimple | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/agent-inject-secret-kafka-rest-bearer: secret/kafka/bearer.txt
+      vault.hashicorp.com/agent-inject-file-kafka-rest-bearer: bearer.txt
+      vault.hashicorp.com/agent-inject-template-kafka-rest-bearer: |
+        {{- with secret "secret/kafka/bearer.txt" -}}
+        {{ .Data.data.bearer | base64Decode }}
+        {{- end }}
+      vault.hashicorp.com/role: confluent-operator
+  storageClass:
+    name: custom-gp2
+  dataVolumeCapacity: 100Gi
+  configOverrides:
+    server:
+      - confluent.cluster.link.enable=true
+      - zookeeper.set.acl=true
+  tls:
+    secretRef: rsa-example-cert-2048
+  license:
+    directoryPathInContainer: /vault/secrets
+  authorization:
+    type: rbac
+    superUsers:
+    - User:kafka
+  services:
+    mds:
+      tls:
+        enabled: true
+      tokenKeyPair:
+        directoryPathInContainer: /vault/secrets
+      provider:
+        type: ldap
+        ldap:
+          address: ldap://ldap.confluent.svc.cluster.local:389
+          authentication:
+            type: simple
+            simple:
+              directoryPathInContainer: /vault/secrets
+          configurations:
+            groupNameAttribute: cn
+            groupObjectClass: group
+            groupMemberAttribute: member
+            groupMemberAttributePattern: CN=(.*),DC=rtpbi,DC=com
+            groupSearchBase: dc=rtpbi,dc=com
+            userNameAttribute: cn
+            userMemberOfAttributePattern: CN=(.*),DC=rtpbi,DC=com
+            userObjectClass: organizationalRole
+            userSearchBase: dc=rtpbi,dc=com
+      externalAccess:
+        type: loadBalancer
+        loadBalancer:
+          domain: rtpbi.com
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: nlb
+            service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+            service.beta.kubernetes.io/aws-load-balancer-internal: 'true'
+            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+            service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0a79c38677ef32495, subnet-0824f786f80789719, subnet-0bd7add273956fadc
+            service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: preserve_client_ip.enabled=true
+            service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+            service.beta.kubernetes.io/aws-load-balancer-ssl-ports: '443'
+            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:390971227647:certificate/14e41286-2163-402f-8a23-83dfe7945d08
+            service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-2016-08
+            service.beta.kubernetes.io/aws-load-balancer-alpn-policy: HTTP2Preferred
+  dependencies:
+    zookeeper:
+      endpoint: zookeeper.confluent.svc.cluster.local:2182
+      authentication:
+        type: digest
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    kafkaRest:
+      authentication:
+        type: bearer
+        bearer:
+          directoryPathInContainer: /vault/secrets
+  listeners:
+    internal:
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+    external:
+      authentication:
+        type: plain
+        jaasConfigPassThrough:
+          directoryPathInContainer: /vault/secrets/jaas
+      tls:
+        enabled: true
+      externalAccess:
+        type: loadBalancer
+        loadBalancer:
+          domain: rtpbi.com
+          annotations:
+            service.beta.kubernetes.io/aws-load-balancer-type: nlb
+            service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+            service.beta.kubernetes.io/aws-load-balancer-internal: 'true'
+            service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+            service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-0a79c38677ef32495, subnet-0824f786f80789719, subnet-0bd7add273956fadc
+            service.beta.kubernetes.io/aws-load-balancer-target-group-attributes: preserve_client_ip.enabled=true
+            service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
+            service.beta.kubernetes.io/aws-load-balancer-backend-protocol: ssl
+            service.beta.kubernetes.io/aws-load-balancer-ssl-ports: '9092'
+            service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:390971227647:certificate/14e41286-2163-402f-8a23-83dfe7945d08
+            service.beta.kubernetes.io/aws-load-balancer-ssl-negotiation-policy: ELBSecurityPolicy-2016-08
+            service.beta.kubernetes.io/aws-load-balancer-alpn-policy: HTTP2Preferred
+  metricReporter:
+    enabled: true
+    authentication:
+      type: plain
+      jaasConfigPassThrough:
+        directoryPathInContainer: /vault/secrets/jaas
+    tls:
+      enabled: true
